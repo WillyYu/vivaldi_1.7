@@ -393,6 +393,24 @@ void BrowserPlugin::updateGeometry(const WebRect& plugin_rect_in_viewport,
   blink::WebView* webview = container()->document().frame()->view();
   RenderViewImpl::FromWebView(webview)->GetWidget()->convertViewportToWindow(
       &rect_in_css);
+
+  blink::WebElement elem = container()->element();
+  const char* tab_id_str = "tab_id";
+  bool is_vivaldi_tab = false;
+  int attr_count = elem.attributeCount();
+
+  // vivaldi tab and unvisible dont update geometry
+  for (int i = 0; i < attr_count; ++i) {
+    if (elem.attributeLocalName(i).equals(tab_id_str)) {
+      is_vivaldi_tab = true;
+      break;
+    }
+  }
+  gfx::Rect tmp_view_rect = rect_in_css;
+  if (tmp_view_rect.size() != old_view_rect.size()
+        && is_vivaldi_tab && !is_visible)
+    return;
+
   // gisli@vivalid.com:  keep track of old pos.
   int old_x = view_rect_.x();
   int old_y = view_rect_.y();

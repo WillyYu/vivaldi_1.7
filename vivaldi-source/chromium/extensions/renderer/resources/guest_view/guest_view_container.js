@@ -24,6 +24,13 @@ function GuestViewContainer(element, viewType) {
   this.setupAttributes();
 
   privates(this).internalElement = this.createInternalElement$();
+  // attch attributes to internal element
+  var attrs = element.attributes;
+  for (var i = 0; i < attrs.length; ++i) {
+    var att = attrs[i];
+    privates(this).internalElement.setAttribute(att.nodeName, att.nodeValue);
+  }
+
   this.setupFocusPropagation();
   var shadowRoot = this.element.createShadowRoot();
   shadowRoot.appendChild(privates(this).internalElement);
