@@ -43152,9 +43152,9 @@
                             }, e)
                         },
                         length: 0,
-                        pageSize: 10,
+                        pageSize: 100,
                         scrollParentGetter: null,
-                        threshold: 1000,
+                        threshold: 100,
                         type: "simple",
                         useTranslate3d: !1
                     },
