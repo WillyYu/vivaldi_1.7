@@ -1,7 +1,6 @@
 # vivaldi_1.7
 
-## Enhacement 1
-* Enhance the performance of tab resize when toggling Bookmark/Download/... panels.
+## Enhance the performance of tab resize when toggling Bookmark/Download/... panels.
 
 ### Detail
 I usually hold more than 50 tabs open, it becomes slow to resize tabs when toggling bookmark panel.
@@ -16,15 +15,14 @@ Like below image, open 47 tabs Chromium took around 202 ms to finish the layout 
 So, I made some tricky change:
 
 1. guest_view_container.js
-    - insert the attributes of webview to interanl element
+    - Insert the attributes of webview to interanl element, so that can be identified
 
 2. browser_plugin.cc
     - When resize event is fired, don't report geometry change. If:
-        - check the element whether Vivaldi's tab. (by attributes from geust_view_container.js)
-        - is not visible
+        - Check the element whether Vivaldi's tab. (by attributes from geust_view_container.js)
+        - Not visible
 
-## Enhacement 2
-* Enhance the Bookmark panel's scrolling smoothness
+## Enhance the Bookmark panel's scrolling smoothness
 
 ### Detail
 If there are many bookmarks on bookmark panel, the scrolling will be jank.
@@ -40,5 +38,5 @@ The result shown as bottom trace of below image:
 Change:
 vendor-bundle.js
 
-This change just a simple hint, I think should be a configurable props of Bookmark modules on bundle.js
+This change just a simple hint, I think should be a configurable props on Bookmark modules of bundle.js
 
