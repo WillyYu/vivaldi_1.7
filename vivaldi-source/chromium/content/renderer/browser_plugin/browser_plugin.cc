@@ -407,7 +407,8 @@ void BrowserPlugin::updateGeometry(const WebRect& plugin_rect_in_viewport,
     }
   }
   gfx::Rect tmp_view_rect = rect_in_css;
-  if (tmp_view_rect.size() != old_view_rect.size()
+  if (!old_view_rect.IsEmpty()
+        && tmp_view_rect.size() != old_view_rect.size()
         && is_vivaldi_tab && !is_visible)
     return;
 
