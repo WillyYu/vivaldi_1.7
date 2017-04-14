@@ -1,5 +1,13 @@
 # vivaldi_1.7
 
+## Skip console log for Vivaldi Render Process [2017-04-15]
+
+### Detail
+Each WebView's console log message will sent to the host.
+Some website has lots message (debug/Warning/Error) during loading.
+Vivaldi didn't listen WebView's console message event, so that can skip it to reduce the loading of Vivaldi's CrRenderMain
+
+
 ## Enhance the performance of tab resize when toggling Bookmark/Download/... panels.
 
 ### Detail

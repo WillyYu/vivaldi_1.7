@@ -736,6 +736,10 @@ bool WebViewGuest::DidAddMessageToConsole(WebContents* source,
                                           const base::string16& message,
                                           int32_t line_no,
                                           const base::string16& source_id) {
+  //vivalid will not handle console message, skip it.
+  if (IsVivaldiApp(owner_host()))
+    return true;
+
   std::unique_ptr<base::DictionaryValue> args(new base::DictionaryValue());
   // Log levels are from base/logging.h: LogSeverity.
   args->SetInteger(webview::kLevel, level);
